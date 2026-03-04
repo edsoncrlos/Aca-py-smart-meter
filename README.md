@@ -20,3 +20,12 @@
 
 ### Infra
 - [**Docker 29.2.1**](https://www.docker.com/) - Docker is a platform designed to help developers build, share, and run container applications.
+
+## Setup
+### `.env.sample`
+- Contains the environment variables required to deploy the project.
+- Copy it to `.env` and update the values if necessary:
+
+```bash
+cp .env.sample .env
+```
