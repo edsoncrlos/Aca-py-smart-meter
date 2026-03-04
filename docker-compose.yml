@@ -1,0 +1,57 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:17.7
+    restart: always
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_USER}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  issuer:
+    container_name: issuer
+    image: bcgovimages/aries-cloudagent:py3.9-indy-1.16.0_0.12.2
+    restart: always
+    ports:
+      - "${ISSUER_PORT_ADMIN}:${ISSUER_PORT_ADMIN}"
+      - "${ISSUER_PORT_INBOUND}:${ISSUER_PORT_INBOUND}"
+    
+    env_file:
+      - .env
+    entrypoint: /start.sh
+    volumes:
+    - ./scripts/aca-py/issuer/start.sh:/start.sh:readonly
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  verifier:
+    container_name: verifier
+    image: bcgovimages/aries-cloudagent:py3.9-indy-1.16.0_0.12.2
+    restart: always
+    ports:
+      - "${VERIFIER_PORT_ADMIN}:${VERIFIER_PORT_ADMIN}"
+      - "${VERIFIER_PORT_INBOUND}:${VERIFIER_PORT_INBOUND}"
+    
+    env_file:
+      - .env
+    entrypoint: /start.sh
+    volumes:
+    - ./scripts/aca-py/verifier/start.sh:/start.sh:readonly
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

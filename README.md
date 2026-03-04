@@ -22,6 +22,7 @@
 - [**Docker 29.2.1**](https://www.docker.com/) - Docker is a platform designed to help developers build, share, and run container applications.
 
 ## Setup
+
 ### `.env.sample`
 - Contains the environment variables required to deploy the project.
 - Copy it to `.env` and update the values if necessary:
@@ -29,3 +30,13 @@
 ```bash
 cp .env.sample .env
 ```
+
+### ACA-Py
+#### Issuer
+- To configure the issuer and register the required credentials on the ledger, run the scripts in `scripts/bootstrap` in the following order:
+
+1. `01-Create-did-issuer.sh`
+2. `02-Add-public-did-in-ledger.sh`
+3. `03-Make-did-public.sh`
+4. `04-Create-schemas.sh`
+5. `05-Create-Credential-definitions.sh`
