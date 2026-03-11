@@ -1,0 +1,63 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'br.ufma.lsdi'
+version = '0.0.1-SNAPSHOT'
+description = 'Self-Sovereign Identity (SSI) Issuer for issuing verifiable credentials for smart electricity meters, based on the Hyperledger Aries Cloud Agent Python (ACA-Py)'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+//	Thymeleaf Extras
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.4.0")
+
+//	ACA-Py Client Library
+    implementation("network.idu.acapy:aries-client-python:0.10.0")
+
+//	Docs
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.1")
+
+//	Database
+    implementation 'org.springframework.boot:spring-boot-h2console'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+
+//	Developer
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+//	Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-thymeleaf-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+
+	testLogging {
+		events = ["passed", "skipped", "failed"]
+		exceptionFormat = "full"
+		showCauses = true
+		showExceptions = true
+		showStackTraces = true
+	}
+}
