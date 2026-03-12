@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+      
+<head>
+    <title>Issuer Credentials</title>
+</head>
+
+<main class="content center" layout:fragment="content">
+  <header>
+      <h2>Issuer Credentials</h2>
+
+      <nav sec:authorize="isAuthenticated()" class="default-form">
+          <ul>
+              <li>
+                  <button id="connectBtn" class="primary">Issuer Role Credential</button>
+              </li>
+          </ul>
+      </nav>
+  </header>
+
+    <section>
+      <div id="qrcode">
+
+      </div>
+    </section>
+
+    <section>
+        <div id="error">
+
+        </div>
+    </section>
+</main>
+
+<th:block layout:fragment="page-scripts">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script type="module" th:src="@{/js/issuer.js}"></script>
+</th:block>
+
+</html>
