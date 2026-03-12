@@ -1,0 +1,20 @@
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    br.ufma.lsdi.SmartMeterVerifierSSI: INFO
+    org.springframework: WARN
+
+  file:
+    name: /var/log/app/application.log
+
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+server:
+  forward-headers-strategy: framework
