@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+      
+<head>
+    <title>Home</title>
+</head>
+
+<main class="content center" layout:fragment="content">
+
+    <section>
+        <h2>Welcome</h2>
+
+        <nav sec:authorize="isAuthenticated()" class="default-form">
+            <ul>
+                <li>
+                    <a th:href="@{/issuer}">
+                        <button class="primary">Issuer Credential</button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+        
+
+    <section aria-labelledby="Authentication">
+        <!-- user not authenticated -->
+        <div sec:authorize="!isAuthenticated()" class="default-form">
+            <p class="no-margin">You are not logged</p>
+            <a th:href="@{/login}">
+                <button class="primary">Sign-in</button>
+            </a>
+        </div>
+
+        <!-- user authenticated -->
+        <div sec:authorize="isAuthenticated()" class="default-form">
+            <a th:href="@{/logout}">
+                <button class="primary">Sign-out</button>
+            </a>
+        </div>
+    </section>
+</main>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="Edson Carlos" content="">
+
+    <link th:href="@{/default-ui.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+
+    <script th:inline="javascript">
+    window.APP = {
+        BASE_PATH: /*[[@{/}]]*/ ""
+    };
+    </script>
+
+    <title layout:title-pattern="$CONTENT_TITLE | Issuer SSI">
+    </title>
+</head>
+
+<body>
+
+<!--<header th:replace="fragments/header :: header"></header>-->
+
+<main layout:fragment="content">
+    <section >
+        Default content
+    </section>
+</main>
+
+<!-- <footer th:replace="fragments/footer :: footer"></footer> -->
+
+<!-- global scripts -->
+<script th:src="@{/js/main.js}"></script>
+<!-- page scripts -->
+<th:block layout:fragment="page-scripts"></th:block>
+
+</body>
+</html>
