@@ -1,0 +1,27 @@
+name: Test SmartMeterIssuer
+
+on:
+  push:
+    paths:
+      - 'SmartMeterIssuerSSI/**'
+  pull_request:
+    paths:
+      - 'SmartMeterIssuerSSI/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: SmartMeterIssuerSSI
+
+    steps:
+      - uses: actions/setup-java@v4
+        with:
+            distribution: temurin
+            java-version: 17
+
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: ./gradlew test
+        
