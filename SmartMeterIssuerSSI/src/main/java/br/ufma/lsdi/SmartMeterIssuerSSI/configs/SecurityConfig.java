@@ -22,6 +22,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers(ApiPaths.WEBHOOK_SECURE)
                 )
                 .authorizeHttpRequests((requests) ->  requests
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(
                                 "/",
                                 "/css/**",
