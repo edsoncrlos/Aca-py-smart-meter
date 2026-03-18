@@ -1,0 +1,45 @@
+#spring:
+#  output:
+#    ansi:
+#      enabled: ALWAYS
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    br.ufma.lsdi.SmartMeterVerifierSSI: DEBUG
+    org.springframework.web: INFO
+
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+
+aca-py:
+  issuer:
+    did: "did:sov:123456789abcdef"
+
+  credentials:
+    person:
+      schema:
+        name: "Person"
+        version: "1.0"
+      cred-def:
+        tag: "default"
+
+    diploma:
+      schema:
+        name: "Diploma"
+        version: "1.0"
+      cred-def:
+        tag: "revocable_v1"
+
+    certificado:
+      schema:
+        name: "Certificado"
+        version: "2.0"
+      cred-def:
+        tag: "non_revocable"

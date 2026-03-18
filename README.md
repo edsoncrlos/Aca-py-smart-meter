@@ -21,6 +21,26 @@
 ### Infra
 - [**Docker 29.2.1**](https://www.docker.com/) - Docker is a platform designed to help developers build, share, and run container applications.
 
+
+
+## 🏗 Arquitetura
+
+- O projeto é composto pelos seguintes componentes:
+
+### Issuer 
+- Responsável pela emissão das credências verificáveis
+- Aplicação [SmartMeterIssuerSSI](./SmartMeterIssuerSSI/README.md) se comunicação agente aca-py issuer
+
+### Verifier
+- Responsável pela validação das credências e autenticação
+
+### Holder
+- Aplicação [**bc-wallet-mobile**](https://github.com/bcgov/bc-wallet-mobile).
+- BC Gov Wallet utilizada para armazenamento e apresentação das credenciais verificáveis.
+
+### Aca-py agents
+- ACA-py(Aries Cloud Agent Python) é responsável pela comunicação Aries e gerenciamento de conexões e credenciais. Garantindo a inteoperabilidade do protocolo DIDCom para os servidores issuer e verifier. 
+
 ## Setup
 
 ### `.env.sample`

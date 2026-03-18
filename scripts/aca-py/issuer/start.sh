@@ -10,7 +10,7 @@ exec aca-py start \
   --outbound-transport http \
   --admin 0.0.0.0 $ISSUER_PORT_ADMIN \
   --webhook-url "$ISSUER_WEBHOOK_URL" \
-  --admin-api-key "$ISSUER_ADMIN_API_KEY" \
+  --admin-insecure-mode \
   \
   --wallet-type askar \
   --wallet-storage-type postgres_storage \
